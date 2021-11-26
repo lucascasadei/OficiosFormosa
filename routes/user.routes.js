@@ -13,13 +13,11 @@ const {
     haveRole
 } = require('../middlewares');
 
-
-
 const { usuariosGet,
         usuariosPut,
         usuariosPost,
         usuariosDelete,
-        usuariosPatch} = require('../controllers/user.controllers');
+        usuariosPatch } = require('../controllers/user.controllers');
 
 const { isRoleValid, 
         emailExist,

@@ -10,8 +10,15 @@ class Server {
 
         //Importamos el puerto
         this.port = process.env.PORT;
-        this.usuariosPath = '/api/usuarios';
-        this.authPath = '/api/auth';
+
+
+        this.paths = {
+            auth: '/api/auth',
+            buscar: '/api/buscar',
+            category: '/api/category',
+            service: '/api/service',
+            usuariosPath: '/api/usuarios',
+        }
 
         //Conectar a la base de datos
         this.conectarDB();
@@ -50,9 +57,12 @@ class Server {
     // Vemos las rutas 
     routes() {
 
-        this.app.use(this.authPath, require('../routes/auth.routes'));
-        this.app.use(this.usuariosPath, require('../routes/user.routes'));
-        
+        this.app.use(this.paths.auth, require('../routes/auth.routes'));
+        this.app.use(this.paths.buscar, require('../routes/buscar.routes'));
+        this.app.use(this.paths.usuariosPath, require('../routes/user.routes'));
+        this.app.use(this.paths.service, require('../routes/service.routes'));
+        this.app.use(this.paths.category, require('../routes/category.routes'));
+
     }
 
     // Escuchamos el puerto
