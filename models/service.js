@@ -36,6 +36,7 @@ const ServiceSchema = Schema({
     instagram: String,
     twitter: String,
     website: String,
+    photo: String,
 });
 
 ServiceSchema.methods.toJSON = function() {
