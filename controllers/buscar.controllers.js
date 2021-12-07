@@ -2,13 +2,15 @@ const { response } = require("express");
 const { ObjectId } = require('mongoose').Types;
 
 const { User, Category, Service } = require('../models');
+const Menssage = require('../models/message');
 
 const coleccionesPermitidas = [
     
     'category',
     'user',
     'service',
-    'role'
+    'role',
+    'message'
 
 ];
 
@@ -56,6 +58,7 @@ const buscarCategory = async(termino = '', res = response) => {
 
 }
 
+
 const buscarService = async(termino = '', res = response) => {
     
     const esMongoId = ObjectId.isValid(termino);
@@ -75,6 +78,27 @@ const buscarService = async(termino = '', res = response) => {
     res.json({
         result: service
     });
+
+}
+
+const buscarMessage = async(termino = '', res = response) => {
+    
+    const esMongoId = ObjectId.isValid(termino);
+
+    if(esMongoId){
+        const message = await Menssage.findById(termino);
+        return res.json({
+            result: (message) ? [message] : []
+        });
+    }
+
+    const expresionregular = new RegExp(termino, 'i');
+
+    const message = await Menssage.find({email:expresionregular}).sort({date: -1});
+
+        res.json({
+            result: message
+        });
 
 }
 
@@ -98,6 +122,9 @@ const buscar = (req, res = response) => {
         break;
         case 'service':
             buscarService(termino, res);
+        break;
+        case 'message':
+            buscarMessage(termino, res);
         break;
 
         default: 

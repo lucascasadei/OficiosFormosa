@@ -63,6 +63,7 @@ const conectarSocket = async() => {
 
     socket.on('mensaje-privado', (payload) => {
         console.log('Privado:', payload);
+        dibujarMensajesPrivado(payload);
          
     });
 
@@ -87,6 +88,26 @@ const dibujarUsuarios = ( user = []) => {
     });
 
     ulUsuarios.innerHTML = userHtml;
+}
+
+const dibujarMensajesPrivado = ( mensajes = []) => {
+
+    let mensajesHtml = '';
+    mensajes.forEach(({emisor, message}) => {
+
+        mensajesHtml +=  `
+
+        <li>
+            <p>
+                <span class='text-primary'> ${emisor} </span>
+                <span>${message}</span>
+            </p>
+        </li>
+        ` ;
+
+    });
+
+    ulMensaje.innerHTML = mensajesHtml;
 }
 
 

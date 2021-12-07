@@ -33,11 +33,10 @@ const socketController = async(socket = new Socket(), io) => {
 
         if(uid) {
             //Mensaje privado
-            //console.log( mensaje);
-            const message = new Message({emisor: user.id, receptor: uid, message: mensaje})
+            //console.log( user.email);
+            const message = new Message({emisor: user.id ,receptor: uid ,message: mensaje, email: user.email})
             message.save();
             socket.to(uid).emit('mensaje-privado',{de: user.name, message: mensaje, emisor: user.id, receptor: uid});
-
         }else {
             chatMensajes.enviarMensaje(user.id, user.name, mensaje);
             //enviar a todos

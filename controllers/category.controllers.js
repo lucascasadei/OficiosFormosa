@@ -60,7 +60,7 @@ const createCategory = async(req, res = response) => {
 
     //Guardar en DB
     await category.save();
-    res.status(201).json(category);
+    res.json(category);
 
     
 

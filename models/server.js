@@ -28,6 +28,7 @@ class Server {
             auth: '/api/auth',
             buscar: '/api/buscar',
             category: '/api/category',
+            message: '/api/message',
             service: '/api/service',
             uploads: '/api/uploads',
             usuariosPath: '/api/usuarios',
@@ -83,6 +84,7 @@ class Server {
         this.app.use(this.paths.auth, require('../routes/auth.routes'));
         this.app.use(this.paths.buscar, require('../routes/buscar.routes'));
         this.app.use(this.paths.usuariosPath, require('../routes/user.routes'));
+        this.app.use(this.paths.message, require('../routes/message.routes'));
         this.app.use(this.paths.service, require('../routes/service.routes'));
         this.app.use(this.paths.uploads, require('../routes/uploads.routes'));
         this.app.use(this.paths.category, require('../routes/category.routes'));

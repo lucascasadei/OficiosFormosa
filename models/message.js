@@ -13,9 +13,16 @@ const MessageSchema = Schema({
         ref: 'User',
         required: true
     },
+    email: {
+        type: String,
+    },
     message: {
         type: String,
         require: true
+    },
+    date: {
+        type: Date,
+        default: Date.now
     }
 
 });

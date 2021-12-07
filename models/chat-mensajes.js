@@ -3,6 +3,7 @@ class Mensaje {
         this.uid     = uid;
         this.name    = name;
         this.mensaje = mensaje;
+        this.email   = this.email
     }
 }
 
@@ -12,7 +13,8 @@ class ChatMensajes {
         this.user = {};
     }
 
-    get ultimos10() {
+    get ultimos10(id) {
+        this.user[id];
         this.mensajes = this.mensajes.splice(0,10);
         return this.mensajes;
     }
